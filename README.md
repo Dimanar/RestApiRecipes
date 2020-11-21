@@ -1,4 +1,4 @@
-With repository for my mobile application "Rare Chef-cooker".
+This repository for my mobile application "Rare Chef-cooker".
 All data I have taken from website https://www.allrecipes.com.
 
 It`s only first version of api, in the future i am going to upgrade. 
