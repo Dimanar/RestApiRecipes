@@ -8,3 +8,9 @@ From now this rest api can send a recipes by id or name, or group by types, or p
 ***WOKRS ONLY AT LOCAL MACHINE(it is temporary)***
 PLEASE, be polite with my code. This is my first try to write rest api.
 ***
+
+
+
+
+
+http://127.0.0.1:5000/

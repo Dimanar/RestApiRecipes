@@ -92,16 +92,16 @@ def get_recipe_by_name(name):
     recipe = recipe_schema.dump(get_food)
     return make_response(jsonify({"recipe": recipe}))
 
-@app.route('/recipes/type/<type>', methods = ['GET'])
+@app.route('/recipes/<type>', methods = ['GET'])
 def get_recipes_by_type(type):
     get_food = Food.query.filter_by(type=str(type)).all()
     recipe_schema = RecipesSchema(many=True)
     recipe = recipe_schema.dump(get_food)
     return make_response(jsonify({"recipe": recipe}))
 
-@app.route('/recipes/pack/<pack>', methods = ['GET'])
+@app.route('/recipes/<pack>', methods = ['GET'])
 def get_recipes_by_pack(pack):
-    get_food = Food.query.filter_by(type=str(pack)).all()
+    get_food = Food.query.filter_by(pack=str(pack)).all()
     recipe_schema = RecipesSchema(many=True)
     recipe = recipe_schema.dump(get_food)
     return make_response(jsonify({"recipe": recipe}))

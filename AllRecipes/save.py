@@ -34,8 +34,8 @@ class Save_db:
 
 
     def __query_to_save(self, recipe, debug=False):
-        type, pack = recipe['type'], recipe['package']
-        link, name = recipe['link'], recipe['name']
+        type, pack = self.__clear_from_space(recipe['type']), self.__clear_from_space(recipe['package'])
+        link, name = recipe['link'], self.__clear_from_space(recipe['name'])
         summary, image = recipe['summary'], recipe['image']
         meta = [''.join(meta) for meta in recipe['meta']]
         meta = '<->'.join(meta)
@@ -49,3 +49,9 @@ class Save_db:
         count = self.__curs.rowcount
         if debug:
             print(count, "Record inserted successfully into mobile table")
+
+    def __clear_from_space(self, to_clear):
+            words = re.findall(r'\w+', to_clear)
+            return ' '.join(words)
+
+
