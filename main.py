@@ -4,6 +4,7 @@ from flask import Flask, request, jsonify, make_response
 from flask_sqlalchemy import SQLAlchemy
 from marshmallow_sqlalchemy import ModelSchema
 from marshmallow import fields
+from collections import ChainMap
 from flask_sqlalchemy import SQLAlchemy
 from flask import jsonify
 
@@ -83,20 +84,23 @@ def get_recipe_by_id(id):
     get_food = Food.query.get(id)
     recipe_schema = RecipesSchema()
     recipe = recipe_schema.dump(get_food)
-    return make_response(jsonify({"recipe": recipe}))
+    return make_response(jsonify(recipe))
 
 @app.route('/recipe/<name>', methods = ['GET'])
 def get_recipe_by_name(name):
     get_food = Food.query.get(name)
     recipe_schema = RecipesSchema()
     recipe = recipe_schema.dump(get_food)
-    return make_response(jsonify({"recipe": recipe}))
+    return make_response(jsonify(recipe))
 
 @app.route('/recipes/<type>', methods = ['GET'])
 def get_recipes_by_type(type):
     get_food = Food.query.filter_by(type=str(type)).all()
+    print(get_food)
     recipe_schema = RecipesSchema(many=True)
+    print(recipe_schema)
     recipe = recipe_schema.dump(get_food)
+    print(recipe)
     return make_response(jsonify({"recipe": recipe}))
 
 @app.route('/recipes/<pack>', methods = ['GET'])
